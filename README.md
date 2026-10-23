@@ -3,7 +3,9 @@
 **Course:** Computer Organization and Architecture (COA)  
 **Topic:** Signed Number Representation (Sign-Magnitude, 1's Complement, 2's Complement) and Arithmetic Overflow Detection  
 **Author:** Easala Jagadeesh ([@jagadeesh177](https://github.com/jagadeesh177))  
-**Repository:** [https://github.com/jagadeesh177/overflow-detective](https://github.com/jagadeesh177/overflow-detective)
+**Live Deployed Application (Vercel):** [https://overflow-detective.vercel.app](https://overflow-detective.vercel.app)  
+**GitHub Repository:** [https://github.com/jagadeesh177/overflow-detective](https://github.com/jagadeesh177/overflow-detective)  
+**Project Report (PDF):** [4_COA_Report_Easala_Jagadeesh.pdf](4_COA_Report_Easala_Jagadeesh.pdf)  
 
 ---
 
@@ -64,12 +66,16 @@ In two's complement addition, overflow occurs under two mathematically equivalen
 
 ```
 overflow-detective/
-├── main.py             # Core computational engine, CLI runner, and test suite
-├── app.py              # Lightweight HTTP server using standard library http.server
-├── index.html          # Interactive, responsive web dashboard (offline, no external CDNs)
-├── PROJECT_REPORT.md   # Formal academic project report and technical documentation
-├── README.md           # Project documentation and user guide
-└── .gitignore          # Standard Python development ignores
+├── 4_COA_Report_Easala_Jagadeesh.pdf  # Comprehensive academic project report
+├── api/
+│   └── index.py                      # Vercel serverless function entrypoint
+├── app.py                            # Local HTTP server using standard library
+├── index.html                        # Interactive, responsive web dashboard
+├── main.py                           # Core computational engine, CLI runner, and test suite
+├── requirements.txt                  # Python dependencies (standard library)
+├── vercel.json                       # Vercel deployment and routing configuration
+├── README.md                         # Project documentation and execution guide
+└── .gitignore                        # Standard Python development ignores
 ```
 
 ---
@@ -78,7 +84,30 @@ overflow-detective/
 
 The project requires only **Python 3.8+** with **zero external package dependencies**.
 
-### 5.1 Terminal Mode (CLI)
+### 5.1 Live Web Dashboard (Vercel Production)
+
+Access the live cloud deployment directly at:
+**[https://overflow-detective.vercel.app](https://overflow-detective.vercel.app)**
+
+### 5.2 Local Web Dashboard Mode
+
+1. **Start the local HTTP server:**
+   ```bash
+   python app.py
+   ```
+   *(Optional port parameter: `python app.py --port 8080`)*
+
+2. **Open the browser at:**
+   ```
+   http://localhost:8001
+   ```
+
+The dashboard includes:
+- **Module 1:** Base converter & bit representation viewer (Binary, Octal, Hexadecimal, Sign-Magnitude, 1's Complement, 2's Complement).
+- **Module 2:** ALU Full Adder Simulator displaying carry chains, operands, sum bits, and status badges.
+- **Module 3:** Interactive historical bug replay buttons that automatically load parameters into the simulation engine.
+
+### 5.3 Terminal Mode (CLI)
 
 1. **Run Full Academic Demonstration:**
    ```bash
@@ -98,24 +127,6 @@ The project requires only **Python 3.8+** with **zero external package dependenc
    ```
    *Exhaustively tests all 256 combinations of 4-bit additions ($-8$ to $+7$) and key 8-bit boundary conditions against mathematical truth.*
 
-### 5.2 Web Dashboard Mode
-
-1. **Start the local HTTP server:**
-   ```bash
-   python app.py
-   ```
-   *(Optional port parameter: `python app.py --port 8080`)*
-
-2. **Open the browser at:**
-   ```
-   http://localhost:8001
-   ```
-
-The dashboard includes:
-- **Module 1:** Base converter & bit representation viewer (Binary, Octal, Hexadecimal, Sign-Magnitude, 1's Complement, 2's Complement).
-- **Module 2:** ALU Full Adder Simulator displaying carry chains, operands, sum bits, and status badges.
-- **Module 3:** Interactive historical bug replay buttons that automatically load parameters into the simulation engine.
-
 ---
 
 ## 6. Verification and Validation
@@ -130,4 +141,5 @@ The arithmetic logic was verified by:
 ## 7. License and Attribution
 
 Developed as an academic mini-project for Computer Organization and Architecture.  
-Author: Easala Jagadeesh ([@jagadeesh177](https://github.com/jagadeesh177))
+Author: Easala Jagadeesh ([@jagadeesh177](https://github.com/jagadeesh177))  
+Report: [4_COA_Report_Easala_Jagadeesh.pdf](4_COA_Report_Easala_Jagadeesh.pdf)
