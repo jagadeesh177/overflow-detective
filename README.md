@@ -5,7 +5,6 @@
 **Author:** Easala Jagadeesh ([@jagadeesh177](https://github.com/jagadeesh177))  
 **Live Deployed Application (Vercel):** [https://overflow-detective.vercel.app](https://overflow-detective.vercel.app)  
 **GitHub Repository:** [https://github.com/jagadeesh177/overflow-detective](https://github.com/jagadeesh177/overflow-detective)  
-**Project Report (PDF):** [4_COA_Report_Easala_Jagadeesh.pdf](4_COA_Report_Easala_Jagadeesh.pdf)  
 
 ---
 
