@@ -3,7 +3,7 @@
   "version": 2,
   "functions": {
     "api/index.py": {
-      "includeFiles": "index.html,main.py,app.py,4_COA_Report_Easala_Jagadeesh.pdf"
+      "includeFiles": "index.html,main.py,app.py,COA_Report_Easala_Jagadeesh.pdf,4_COA_Report_Easala_Jagadeesh.pdf"
     }
   },
   "rewrites": [

@@ -286,6 +286,24 @@ def display_addition(a, b, bits):
     return res
 
 
+def display_conversion(n, bits):
+    """Format and print every representation of one integer in a given word size."""
+    low, high = signed_range(bits)
+    print(f"\n--- Conversion for {n} ({bits}-bit) ---")
+    print(f"Absolute Binary: {to_base(abs(n), 2)}")
+    print(f"Absolute Octal:  {to_base(abs(n), 8)}")
+    print(f"Absolute Hex:    {to_base(abs(n), 16)}")
+    print(f"Sign-Magnitude:  {sign_magnitude(n, bits) or 'Out of range'}")
+    print(f"1's Complement:  {ones_complement(n, bits) or 'Out of range'}")
+    print(f"2's Complement:  {twos_complement(n, bits) or 'Out of range'}")
+    print(f"Word Range:      [{low:,} to {high:,}]")
+    if low <= n <= high:
+        print(f"Status:          Value fits within {bits} bits.")
+    else:
+        needed = bits_needed(n)
+        print(f"Status:          Value exceeds {bits} bits. Minimum required word size: {needed} bits.")
+
+
 def run_demonstration():
     """Execute the full structured academic demonstration across all sections."""
     print("=" * 72)
@@ -411,20 +429,7 @@ def interactive_mode():
                     print("Error: bit width must be 4, 8, 16, or 32.")
                     continue
 
-                low, high = signed_range(bits)
-                print(f"\n--- Conversion for {n} ({bits}-bit) ---")
-                print(f"Absolute Binary: {to_base(abs(n), 2)}")
-                print(f"Absolute Octal:  {to_base(abs(n), 8)}")
-                print(f"Absolute Hex:    {to_base(abs(n), 16)}")
-                print(f"Sign-Magnitude:  {sign_magnitude(n, bits) or 'Out of range'}")
-                print(f"1's Complement:  {ones_complement(n, bits) or 'Out of range'}")
-                print(f"2's Complement:  {twos_complement(n, bits) or 'Out of range'}")
-                print(f"Word Range:      [{low:,} to {high:,}]")
-                if low <= n <= high:
-                    print(f"Status:          Value fits within {bits} bits.")
-                else:
-                    needed = bits_needed(n)
-                    print(f"Status:          Value exceeds {bits} bits. Minimum required word size: {needed} bits.")
+                display_conversion(n, bits)
 
             elif choice == "2":
                 a_str = input("Enter operand A: ").strip()
@@ -473,10 +478,31 @@ def main():
     parser.add_argument(
         "-d", "--demo", action="store_true", help="Run academic demonstration."
     )
+    parser.add_argument(
+        "--add", nargs=2, type=int, metavar=("A", "B"),
+        help="Add two integers with a bit-level ALU trace and overflow check, e.g. --add 100 50"
+    )
+    parser.add_argument(
+        "--convert", type=int, metavar="N",
+        help="Show N in binary, octal, hex, sign-magnitude, 1's and 2's complement, e.g. --convert -5"
+    )
+    parser.add_argument(
+        "--bits", type=int, default=8, choices=(4, 8, 16, 32, 64), help="Word size for --add and --convert (default 8)"
+    )
 
     args = parser.parse_args()
 
-    if args.test:
+    if args.add or args.convert is not None:
+        try:
+            if args.convert is not None:
+                display_conversion(args.convert, args.bits)
+            if args.add:
+                print(f"\n--- ALU Addition Trace: {args.add[0]} + {args.add[1]} ({args.bits}-bit) ---")
+                display_addition(args.add[0], args.add[1], args.bits)
+        except ValueError as err:
+            print(f"Error: {err}")
+            sys.exit(1)
+    elif args.test:
         run_unit_tests()
     elif args.interactive:
         interactive_mode()

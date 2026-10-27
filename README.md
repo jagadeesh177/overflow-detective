@@ -5,6 +5,7 @@
 **Author:** Easala Jagadeesh ([@jagadeesh177](https://github.com/jagadeesh177))  
 **Live Deployed Application (Vercel):** [https://overflow-detective.vercel.app](https://overflow-detective.vercel.app)  
 **GitHub Repository:** [https://github.com/jagadeesh177/overflow-detective](https://github.com/jagadeesh177/overflow-detective)  
+**Project Report (PDF):** [COA_Report_Easala_Jagadeesh.pdf](COA_Report_Easala_Jagadeesh.pdf)  
 
 ---
 
@@ -65,13 +66,14 @@ In two's complement addition, overflow occurs under two mathematically equivalen
 
 ```
 overflow-detective/
-├── 4_COA_Report_Easala_Jagadeesh.pdf  # Comprehensive academic project report
+├── COA_Report_Easala_Jagadeesh.pdf   # Comprehensive academic project report
 ├── api/
 │   └── index.py                      # Vercel serverless function entrypoint
 ├── app.py                            # Local HTTP server using standard library
 ├── index.html                        # Interactive, responsive web dashboard
 ├── main.py                           # Core computational engine, CLI runner, and test suite
 ├── requirements.txt                  # Python dependencies (standard library)
+├── tests/test_overflow.py            # 10 unit tests (python -m unittest discover tests)
 ├── vercel.json                       # Vercel deployment and routing configuration
 ├── README.md                         # Project documentation and execution guide
 └── .gitignore                        # Standard Python development ignores
@@ -126,6 +128,19 @@ The dashboard includes:
    ```
    *Exhaustively tests all 256 combinations of 4-bit additions ($-8$ to $+7$) and key 8-bit boundary conditions against mathematical truth.*
 
+4. **Your Own Numbers (no menu):**
+   ```bash
+   python main.py --add 100 50 --bits 8
+   python main.py --convert -5 --bits 8
+   ```
+   *`--add` prints the bit-by-bit addition with the carry chain, Cin/Cout of the sign bit and the overflow flag V; `--convert` prints binary, octal, hex and the three signed representations. `--bits` is 4, 8, 16, 32 or 64 (default 8); invalid input is rejected with a clear message.*
+
+5. **Unit Tests:**
+   ```bash
+   python -m unittest discover tests
+   ```
+   *10 tests, including every pair of 8-bit operands (65,536 additions) and the command-line inputs.*
+
 ---
 
 ## 6. Verification and Validation
@@ -141,4 +156,4 @@ The arithmetic logic was verified by:
 
 Developed as an academic mini-project for Computer Organization and Architecture.  
 Author: Easala Jagadeesh ([@jagadeesh177](https://github.com/jagadeesh177))  
-Report: [4_COA_Report_Easala_Jagadeesh.pdf](4_COA_Report_Easala_Jagadeesh.pdf)
+Report: [COA_Report_Easala_Jagadeesh.pdf](COA_Report_Easala_Jagadeesh.pdf)
