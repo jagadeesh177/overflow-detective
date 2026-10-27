@@ -102,14 +102,8 @@ class handler(BaseHTTPRequestHandler):
                 return self.send_response_data(main.REAL_BUGS)
 
             # Report PDF serving fallback
-            if (
-                path.endswith("COA_Report_Easala_Jagadeesh.pdf")
-                or path.endswith("4_COA_Report_Easala_Jagadeesh.pdf")
-                or endpoint == "report"
-            ):
+            if path.endswith("COA_Report_Easala_Jagadeesh.pdf") or endpoint == "report":
                 pdf_path = os.path.join(ROOT_DIR, "COA_Report_Easala_Jagadeesh.pdf")
-                if not os.path.exists(pdf_path):
-                    pdf_path = os.path.join(ROOT_DIR, "4_COA_Report_Easala_Jagadeesh.pdf")
                 if os.path.exists(pdf_path):
                     with open(pdf_path, "rb") as f:
                         return self.send_response_data(f.read(), "application/pdf")
